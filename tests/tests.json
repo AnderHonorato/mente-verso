@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Jornada pública e perfil de estudos",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "landing pública sem perfil",
+      "notícias com fontes",
+      "criação de perfil local",
+      "acesso ao painel"
+    ],
+    "description": "Verifica a entrada pelo site público e o acesso ao painel após criar perfil local.",
+    "steps": [
+      "Abrir a página e encontrar a seção de notícias sem criar perfil",
+      "Clicar em Começar minha jornada",
+      "Digitar Visitante Teste e clicar em Criar perfil"
+    ],
+    "expected": "Painel de estudos exibe o nome Visitante Teste, cinco trilhas e progresso inicial."
+  },
+  {
+    "name": "Ler e concluir capítulo com persistência",
+    "viewport": "mobile",
+    "covers": [
+      "navegação de trilhas",
+      "leitura e link do livro",
+      "marcar conclusão",
+      "persistência após atualização",
+      "layout mobile"
+    ],
+    "description": "Confirma a conclusão persistente de um capítulo em um dispositivo móvel.",
+    "steps": [
+      "Criar um perfil local",
+      "Abrir Minhas trilhas e selecionar Luto & angústia",
+      "Abrir o primeiro capítulo e marcar como estudado",
+      "Voltar ao painel e atualizar a página"
+    ],
+    "expected": "O capítulo continua concluído e o painel apresenta progresso atualizado."
+  },
+  {
+    "name": "Quiz e cartão interativo",
+    "viewport": "desktop",
+    "covers": [
+      "quiz com feedback",
+      "navegação de questões",
+      "flashcards de estudo"
+    ],
+    "description": "Confirma que um desafio produz feedback e que um cartão apresenta sua resposta.",
+    "steps": [
+      "Entrar com um perfil local",
+      "Abrir Desafios e selecionar a primeira resposta",
+      "Ver feedback e avançar",
+      "Abrir Cartões de memória e tocar no primeiro cartão"
+    ],
+    "expected": "O desafio mostra explicação e o cartão revela a resposta correspondente."
+  },
+  {
+    "name": "Filtrar capítulos e acessar fonte jornalística",
+    "viewport": "mobile",
+    "covers": ["pesquisa de conteúdo", "notícias públicas", "links externos"],
+    "description": "Confirma busca e referência externa a notícia original.",
+    "steps": [
+      "Na página pública abrir a notícia da Nature",
+      "Criar um perfil local",
+      "Ir a Minhas trilhas e pesquisar Lacan"
+    ],
+    "expected": "A notícia abre sua fonte externa e a lista apresenta o capítulo sobre Freud e Lacan."
+  },
+  {
+    "name": "Validação do nome do perfil",
+    "viewport": "desktop",
+    "covers": ["validação do formulário", "bloqueio de dados inválidos"],
+    "description": "Verifica que nomes curtos não criam perfil.",
+    "steps": [
+      "Na página inicial clicar em Entrar",
+      "Digitar A no campo de nome",
+      "Clicar em Criar perfil"
+    ],
+    "expected": "Uma mensagem pede pelo menos 2 caracteres e o formulário permanece aberto."
+  }
+]
