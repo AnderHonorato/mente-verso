@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, ArrowRight, BookOpen, Check, CheckCircle2, ChevronDown, ChevronRight, Code2, Lightbulb, Play, Sparkles, Trophy } from 'lucide-react';
-import type { Aula, Catalogo, Trilha } from '../integracoes/flow-programacao/contratos/tipos';
+import type { Aula, Catalogo } from '../integracoes/flow-programacao/contratos/tipos';
 import catalogoOriginal from '../integracoes/flow-programacao/conteudos/catalogo.json';
 import { avisarLoko } from './Loko';
 import './programacao.css';
