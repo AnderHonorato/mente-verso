@@ -90,5 +90,42 @@
       "Clicar em Criar perfil"
     ],
     "expected": "Uma mensagem pede pelo menos 2 caracteres e o formulário permanece aberto."
+  },
+  {
+    "name": "Estudar programação no MenteVerso",
+    "viewport": "desktop",
+    "covers": [
+      "menu Programação",
+      "10 trilhas originais do Flow",
+      "30 aulas",
+      "identidade do MenteVerso",
+      "Loko"
+    ],
+    "description": "Verifica acesso ao curso Flow pelo painel do MenteVerso.",
+    "steps": [
+      "Criar um perfil local",
+      "Abrir Programação no menu lateral",
+      "Selecionar HTML: conteúdo com significado",
+      "Abrir uma aula publicada e observar exemplos e abas"
+    ],
+    "expected": "Conteúdo do Flow aparece no mesmo site, com o visual original do MenteVerso."
+  },
+  {
+    "name": "Fixar questão local do Flow",
+    "viewport": "mobile",
+    "covers": [
+      "questões Flow",
+      "tentativa única por navegador",
+      "feedback após escolha",
+      "progresso local"
+    ],
+    "description": "Verifica bloqueio local de uma resposta já marcada.",
+    "steps": [
+      "Criar perfil e abrir Programação",
+      "Abrir a primeira aula publicada",
+      "Tocar na aba Fixar e responder uma questão",
+      "Tentar trocar a alternativa"
+    ],
+    "expected": "A primeira resposta mantém-se selecionada e as opções ficam bloqueadas."
   }
 ]
