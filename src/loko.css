@@ -1,0 +1,146 @@
+
+/* Mascote vetorial e interativo Loko. Nenhuma imagem gerada ou biblioteca de animação externa. */
+.loko-area {
+  --loko-olhar-x: 0px;
+  --loko-olhar-y: 0px;
+  --loko-cabeca: 0deg;
+  --loko-arrasto-x: 0px;
+  --loko-arrasto-y: 0px;
+  position: relative;
+  width: 180px;
+  min-height: 205px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  isolation: isolate;
+  pointer-events: auto;
+  transform: translate3d(var(--loko-arrasto-x),var(--loko-arrasto-y),0);
+  transition: transform .38s cubic-bezier(.22,1.6,.35,1);
+  user-select: none;
+  -webkit-user-select: none;
+}
+.loko-hero { width: 168px; min-height: 190px; }
+.loko-secao { width: 280px; min-height: 350px; }
+.loko-flutuante {
+  position: fixed;
+  z-index: 75;
+  bottom: 23px;
+  right: 24px;
+  width: 145px;
+  min-height: 155px;
+  filter: drop-shadow(0 16px 20px #0005);
+}
+.loko-area.loko-segurado { transition: none; z-index: 90; }
+.loko-corpo-botao {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  appearance: none;
+  cursor: grab;
+  position: relative;
+  display: block;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 13px 14px #0009);
+  outline-offset: 3px;
+  animation: loko-respirar 3.6s ease-in-out infinite;
+}
+.loko-corpo-botao:focus-visible { outline: 2px dashed var(--claro,#e99b79); }
+.loko-segurado .loko-corpo-botao { cursor: grabbing; animation: loko-flutuar-pego .55s ease-in-out infinite; filter: drop-shadow(0 25px 24px #0009); }
+.loko-desenho { display: block; width: 100%; height: auto; overflow: visible; }
+.loko-cabeca { transform-origin: 105px 135px; transform: rotate(var(--loko-cabeca)); transition: transform .16s ease-out; }
+.loko-pupilas { transform: translate(var(--loko-olhar-x),var(--loko-olhar-y)); transition: transform .1s ease-out; }
+.loko-palpebras { animation: loko-piscar 6.1s infinite; }
+.loko-rabinho { transform-origin: 153px 187px; animation: loko-abana 3.4s ease-in-out infinite; }
+.loko-orelhas { transform-origin: 105px 73px; animation: loko-orelha 8.3s ease-in-out infinite; }
+.loko-sino { transform-origin: 104px 155px; animation: loko-sininho 5s ease-in-out infinite; }
+.loko-pe-esquerdo,.loko-pe-direito { transition: transform .3s ease; }
+.loko-boca { transition: transform .15s ease; }
+.loko-arraste { margin-top: -5px; font: 9px 'DM Mono',monospace; letter-spacing: .9px; color: #ba947d; opacity: .85; white-space: nowrap; pointer-events: none; }
+.loko-arraste span { color: var(--claro,#e99b79); font-size: 14px; }
+.loko-area:hover .loko-rabinho { animation-duration: .9s; }
+.loko-area:hover .loko-corpo-botao { filter: drop-shadow(0 14px 18px #0009) brightness(1.09); }
+.loko-area:hover .loko-arraste { opacity: 1; }
+.loko-segurado .loko-patinha-esquerda { transform: rotate(18deg) translate(-12px,8px); transform-origin: 65px 180px; }
+.loko-segurado .loko-patinha-direita { transform: rotate(-18deg) translate(12px,8px); transform-origin: 145px 180px; }
+.loko-segurado .loko-pe-esquerdo { transform: translateY(9px); }
+.loko-segurado .loko-pe-direito { transform: translateY(12px); }
+.loko-segurado .loko-cabeca { transform: rotate(-10deg); }
+.loko-segurado .loko-olhos { transform: scaleY(1.13); transform-origin: 105px 95px; }
+.loko-estado-pensando .loko-cabeca,.loko-estado-lendo .loko-cabeca { transform: rotate(-8deg); }
+.loko-estado-digitando .loko-patinha-esquerda { animation: loko-digitar .26s infinite alternate; }
+.loko-estado-digitando .loko-patinha-direita { animation: loko-digitar .25s .11s infinite alternate; }
+.loko-estado-comemorando .loko-corpo-botao,.loko-estado-feliz .loko-corpo-botao { animation: loko-pular .65s ease-in-out 2; }
+.loko-estado-comemorando .loko-rabinho { animation-duration: .35s; }
+.loko-estado-triste .loko-cabeca { transform: rotate(13deg) translateY(5px); }
+.loko-estado-triste .loko-boca { transform: scaleY(-1) translateY(-275px); transform-origin: 105px 138px; }
+.loko-estado-surpreso .loko-olhos { transform: scaleY(1.28); transform-origin: 105px 94px; }
+.loko-estado-surpreso .loko-corpo-botao { animation: loko-susto .45s ease-in-out; }
+.loko-estado-sono .loko-palpebras,.loko-inativo .loko-palpebras { animation: none; stroke-width: 17px; }
+.loko-estado-sono .loko-corpo-botao { animation: loko-sono 5s ease-in-out infinite; }
+.loko-estado-sono .loko-rabinho { animation-duration: 9s; }
+.loko-estado-lendo .loko-pupilas { transform: translateY(4px); }
+.loko-rolando .loko-rabinho { animation-duration: .5s; }
+.loko-estrelas { position: absolute; top: 8%; left: -30%; font: 28px 'DM Mono',monospace; color: var(--claro,#f0ba80); pointer-events: none; text-shadow: 0 0 15px #d99c6a; animation: loko-celebrar 1.3s ease-out both; }
+.loko-medalha { position: absolute; right: 11%; top: 23%; color: #f5c978; }
+.loko-balao {
+  position: absolute;
+  z-index: 7;
+  width: 225px;
+  left: calc(50% - 210px);
+  bottom: 85%;
+  padding: 14px 16px 15px;
+  background: #f2ddc9;
+  color: #423029;
+  border: 1px solid #e7c5a4;
+  box-shadow: 0 12px 30px #0008;
+  border-radius: 14px 14px 4px 14px;
+  animation: loko-fala .24s cubic-bezier(.2,1.5,.4,1) both;
+  pointer-events: auto;
+  font-family: 'DM Sans',sans-serif;
+  text-align: left;
+}
+.loko-balao::after { content:''; position:absolute; right:12px; bottom:-10px; width:0; height:0; border-left:12px solid transparent; border-top:12px solid #f2ddc9; }
+.loko-balao-nome { display:flex; justify-content:space-between; font:700 9px 'DM Mono',monospace; letter-spacing:1.6px; color:#a1644d; padding-right:16px; margin-bottom:8px; }
+.loko-balao-texto { display:block; font:12px/1.55 'DM Sans',sans-serif; }
+.loko-fechar-fala { position:absolute; top:7px; right:9px; font:19px Arial,sans-serif; color:#765a4a; border:0; background:transparent; line-height:1; cursor:pointer; }
+.loko-flutuante .loko-balao { bottom: 91%; left: auto; right: 92%; border-radius: 13px 13px 4px 13px; }
+.loko-controles { position:absolute; display:flex; top:0; right:0; z-index:5; gap:4px; background:#201d1ae0; padding:5px; border:1px solid #ffffff2b; border-radius:11px; opacity:.32; transition:opacity .2s; }
+.loko-flutuante:hover .loko-controles,.loko-controles:focus-within { opacity:1; }
+.loko-controles button { background:transparent; border:0; color:#e1b394; padding:5px; cursor:pointer; display:grid; place-items:center; border-radius:5px; }
+.loko-controles button:hover { background:#ffffff13; }
+.loko-recolhido { min-height:54px; width:75px; border-radius:50px; }
+.loko-recolhido .loko-corpo-botao { width:55px; }
+.loko-recolhido .loko-corpo-botao svg { border-radius:50%; height:54px; overflow:hidden; }
+.loko-recolhido .loko-controles { top:-15px; right:-10px; }
+.loko-recolhido-label { position:absolute; left:0; bottom:-7px; color:#d8a68b; background:#211e1a; padding:2px 7px; border-radius:8px; font:10px 'DM Mono',monospace; }
+@keyframes loko-respirar { 0%,100%{ transform:translateY(0) rotate(-1.2deg) scale(1); }50%{ transform:translateY(-7px) rotate(1.2deg) scale(1.025); } }
+@keyframes loko-abana {0%,100%{transform:rotate(-10deg)}50%{transform:rotate(16deg)}}
+@keyframes loko-orelha {0%,89%,100%{transform:skewX(0deg)}91%{transform:skewX(4deg)}94%{transform:skewX(-3deg)}}
+@keyframes loko-sininho {0%,88%,100%{transform:rotate(0)}91%{transform:rotate(15deg)}94%{transform:rotate(-12deg)}}
+@keyframes loko-piscar {0%,12%,14%,16%,100%{stroke-width:0}13%,15%{stroke-width:18px}}
+@keyframes loko-pular {0%,100%{transform:translateY(0) scale(1)}32%{transform:translateY(-28px) scale(1.06,.94)}60%{transform:translateY(2px) scale(.92,1.07)}}
+@keyframes loko-flutuar-pego {0%,100%{transform:rotate(-6deg)}50%{transform:rotate(7deg)}}
+@keyframes loko-digitar {to{transform:translateY(-5px) rotate(5deg)}}
+@keyframes loko-susto {0%,100%{transform:scale(1)}50%{transform:scale(1.1,.89)}}
+@keyframes loko-sono {0%,100%{transform:translateY(4px) rotate(-4deg)}50%{transform:translateY(10px) rotate(-7deg)}}
+@keyframes loko-fala {from{opacity:0;transform:translateY(7px) scale(.93)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes loko-celebrar {0%{opacity:0;transform:translateY(10px) rotate(0)}45%{opacity:1}100%{opacity:0;transform:translateY(-55px) rotate(20deg)}}
+@media(max-width:760px){
+  .loko-hero { width:210px; min-height:205px; }
+  .loko-secao { width:195px; min-height:220px; }
+  .loko-flutuante { width:115px; min-height:115px; right:8px; bottom:75px; }
+  .loko-flutuante .loko-balao { bottom:94%; left:auto; right:48px; width:192px; }
+  .loko-controles { opacity:.75; }
+  .loko-hero .loko-balao { left:-130px; bottom:103%; width:180px; }
+}
+@media(prefers-reduced-motion:reduce){
+  .loko-area,.loko-corpo-botao,.loko-pupilas,.loko-cabeca,
+  .loko-orelhas,.loko-rabinho,.loko-sino,.loko-palpebras,
+  .loko-balao,.loko-estrelas,.loko-patinha-esquerda,.loko-patinha-direita {
+    animation:none!important; transition:none!important;
+  }
+}

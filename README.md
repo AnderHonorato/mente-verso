@@ -1,35 +1,33 @@
 # MenteVerso 🧠
 
-Plataforma web de estudos de psicanálise, criada com React, TypeScript e Vite.
+Site e aplicativo web de estudos de psicanálise, com React, TypeScript e Vite.
 
 ## Funcionalidades
-- Página inicial pública com notícias e referências externas.
-- Interface animada e responsiva, com mascote Nilo e fundos interativos.
-- Cinco trilhas temáticas com 22 capítulos do livro *Leituras Psicanalíticas sobre os Desafios da Atualidade*.
-- Acesso ao PDF original para leitura acadêmica.
-- Quizzes com feedback e cartões interativos de memorização.
-- Perfil local e progresso de estudos salvo no navegador.
-- Estrutura PWA para adicionar à tela inicial do dispositivo.
 
-## Desenvolvimento local
+- Página inicial pública com notícias externas referenciadas.
+- Cinco trilhas e 22 capítulos do livro *Leituras Psicanalíticas sobre os Desafios da Atualidade*.
+- Quiz, cartões de memória, progresso salvo localmente, PDF original e PWA.
+- **Loko**, mascote original em SVG e CSS, inspirado em um gato cinza com olhos âmbar e sino azul: acompanha o cursor, pode ser arrastado e solto no computador ou celular, pisca, abana o rabo, reage a acertos/erros/leitura e dorme por inatividade.
+- Mensagens do Loko podem ser ocultadas e o mascote pode ser recolhido no painel.
+- Redução de movimento conforme preferências de acessibilidade.
+
+## Executar
+
 ```bash
 npm install
 npm run dev
 ```
 
-Para gerar a versão de produção:
-```bash
-npm run build
-```
+Para compilar: `npm run build`.
 
-## Estado atual
-Esta é a primeira versão web/PWA. O perfil é local (localStorage): não há autenticação real, sincronização na nuvem, tutor de IA ou APK nativo nesta versão.
+## Observações
+
+O perfil e o progresso são armazenados neste navegador. Não existe autenticação real nem sincronização na nuvem nesta versão. O mascote é vetorial no código; **nenhuma imagem foi gerada ou adicionada**.
 
 ## Referência bibliográfica
-*Leituras Psicanalíticas sobre os Desafios da Atualidade*, disponível em:
-https://educapes.capes.gov.br/bitstream/capes/704805/2/Leituras%20Psicanal%C3%ADticas%20sobre%20os%20Desafios%20da%20Atualidade.pdf
 
-Os resumos e exercícios são materiais didáticos auxiliares, não substituem os textos originais ou o acompanhamento profissional.
+[Leituras Psicanalíticas sobre os Desafios da Atualidade (EduCAPES)](https://educapes.capes.gov.br/bitstream/capes/704805/2/Leituras%20Psicanal%C3%ADticas%20sobre%20os%20Desafios%20da%20Atualidade.pdf)
 
-## Prévia publicada
+## Site
+
 https://menteverso-wmt0j1.v2.appdeploy.ai/

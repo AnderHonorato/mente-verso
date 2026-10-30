@@ -7,11 +7,14 @@
       "landing pública sem perfil",
       "notícias com fontes",
       "criação de perfil local",
-      "acesso ao painel"
+      "acesso ao painel",
+      "Loko visível e interativo na página inicial",
+      "mensagem do Loko ao clicar"
     ],
     "description": "Verifica a entrada pelo site público e o acesso ao painel após criar perfil local.",
     "steps": [
       "Abrir a página e encontrar a seção de notícias sem criar perfil",
+      "Localizar o gato cinza Loko e tocar nele para exibir uma fala",
       "Clicar em Começar minha jornada",
       "Digitar Visitante Teste e clicar em Criar perfil"
     ],
@@ -25,13 +28,16 @@
       "leitura e link do livro",
       "marcar conclusão",
       "persistência após atualização",
-      "layout mobile"
+      "layout mobile",
+      "Loko acompanha estudos",
+      "arrastar e soltar o mascote no celular"
     ],
     "description": "Confirma a conclusão persistente de um capítulo em um dispositivo móvel.",
     "steps": [
       "Criar um perfil local",
       "Abrir Minhas trilhas e selecionar Luto & angústia",
       "Abrir o primeiro capítulo e marcar como estudado",
+      "Segurar e arrastar o Loko na área de estudos; verificar que ele se move e reage",
       "Voltar ao painel e atualizar a página"
     ],
     "expected": "O capítulo continua concluído e o painel apresenta progresso atualizado."
@@ -42,7 +48,8 @@
     "covers": [
       "quiz com feedback",
       "navegação de questões",
-      "flashcards de estudo"
+      "flashcards de estudo",
+      "Loko reage à resposta no quiz"
     ],
     "description": "Confirma que um desafio produz feedback e que um cartão apresenta sua resposta.",
     "steps": [
@@ -56,7 +63,11 @@
   {
     "name": "Filtrar capítulos e acessar fonte jornalística",
     "viewport": "mobile",
-    "covers": ["pesquisa de conteúdo", "notícias públicas", "links externos"],
+    "covers": [
+      "pesquisa de conteúdo",
+      "notícias públicas",
+      "links externos"
+    ],
     "description": "Confirma busca e referência externa a notícia original.",
     "steps": [
       "Na página pública abrir a notícia da Nature",
@@ -68,7 +79,10 @@
   {
     "name": "Validação do nome do perfil",
     "viewport": "desktop",
-    "covers": ["validação do formulário", "bloqueio de dados inválidos"],
+    "covers": [
+      "validação do formulário",
+      "bloqueio de dados inválidos"
+    ],
     "description": "Verifica que nomes curtos não criam perfil.",
     "steps": [
       "Na página inicial clicar em Entrar",

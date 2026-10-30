@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Loko, { avisarLoko } from './Loko';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -337,91 +338,6 @@ function FundoVivo() {
   }, []);
   return <canvas className="fundo-vivo" ref={referencia} aria-hidden="true" />;
 }
-function Guia({ tamanho = 'grande' }: { tamanho?: 'grande' | 'pequeno' }) {
-  const [fala, definirFala] = useState('Eu sou o Nilo. Vem descobrir comigo!');
-  const [aberto, definirAberto] = useState(false);
-  const frases = [
-    'Uma pergunta pode abrir um universo.',
-    'Não precisa ter todas as respostas.',
-    'O conhecimento cresce quando a gente explora.',
-    'Você já descobriu algo novo hoje?',
-  ];
-  const interagir = () => {
-    definirFala(frases[Math.floor(Math.random() * frases.length)]);
-    definirAberto(true);
-  };
-  return (
-    <div className={'mascote mascote-' + tamanho}>
-      <button
-        type="button"
-        className="corpo-mascote"
-        onClick={interagir}
-        aria-label="Conversar com Nilo, o mascote"
-        title="Clique em mim"
-      >
-        <svg
-          viewBox="0 0 180 180"
-          role="img"
-          aria-label="Nilo, mascote original do MenteVerso"
-        >
-          <path
-            d="M42 113C15 88 30 43 66 36c18-24 54-20 65 1 38 0 45 41 24 62 10 37-22 65-60 51-27 16-54-2-53-37Z"
-            fill="#e8cbb4"
-            stroke="#5a342c"
-            strokeWidth="6"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M66 38C60 23 68 13 80 13M113 37c-2-17 8-25 22-23"
-            fill="none"
-            stroke="#d68f70"
-            strokeWidth="7"
-            strokeLinecap="round"
-          />
-          <path
-            d="M93 42c-17 18 6 26-4 44m14-32c18 10 2 24 15 34M61 105c-4 21 7 30 19 31m46-29c7 18-2 29-14 31"
-            fill="none"
-            stroke="#cd967a"
-            strokeWidth="5"
-            strokeLinecap="round"
-          />
-          <ellipse cx="73" cy="91" rx="7" ry="10" fill="#392724" />
-          <ellipse cx="115" cy="91" rx="7" ry="10" fill="#392724" />
-          <circle cx="75" cy="88" r="2" fill="white" />
-          <circle cx="117" cy="88" r="2" fill="white" />
-          <path
-            d="M88 112q7 10 16 0"
-            fill="none"
-            stroke="#5a342c"
-            strokeWidth="4"
-            strokeLinecap="round"
-          />
-          <ellipse
-            cx="57"
-            cy="107"
-            rx="10"
-            ry="6"
-            fill="#dc988c"
-            opacity=".65"
-          />
-          <ellipse
-            cx="129"
-            cy="107"
-            rx="10"
-            ry="6"
-            fill="#dc988c"
-            opacity=".65"
-          />
-        </svg>
-      </button>
-      {(aberto || tamanho === 'grande') && (
-        <div className="balao-mascote" onClick={() => definirAberto(false)}>
-          {fala}
-        </div>
-      )}
-    </div>
-  );
-}
 function App() {
   const [pagina, definirPagina] = useState('inicio');
   const [perfil, definirPerfil] = useState(
@@ -456,6 +372,8 @@ function App() {
   const navegar = (destino: string) => {
     definirPagina(destino);
     definirMenuAberto(false);
+    const estados: Record<string, string> = { painel:'Vamos ver seu progresso!', trilhas:'Uma trilha nova para explorar!', quiz:'Vamos pensar juntos?', cartoes:'Hora de exercitar a memória!', conexoes:'Olha quantas ideias conectadas!' };
+    if (destino in estados) avisarLoko('curioso', estados[destino]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const criarPerfil = () => {
@@ -469,6 +387,7 @@ function App() {
     definirAviso('');
     definirModal(false);
     navegar('painel');
+    avisarLoko('comemorando', 'Que bom ter você aqui! Eu sou o Loko.', true);
   };
   const estudar = () => {
     if (perfil) navegar('painel');
@@ -481,6 +400,7 @@ function App() {
   const abrirCapitulo = (selecionado: Capitulo) => {
     definirCapitulo(selecionado);
     navegar('leitura');
+    avisarLoko('lendo', 'Esse capítulo parece interessante! Vamos ler?');
   };
   const marcarConclusao = () => {
     const novaLista = concluidos.includes(capitulo.numero)
@@ -488,6 +408,8 @@ function App() {
       : [...concluidos, capitulo.numero];
     definirConcluidos(novaLista);
     localStorage.setItem('menteverso-concluidos', JSON.stringify(novaLista));
+    if (novaLista.includes(capitulo.numero)) avisarLoko('comemorando', 'Você concluiu mais um capítulo! Arrasou!', true);
+    else avisarLoko('pensando', 'Sem problema, podemos revisar quando quiser.');
   };
   const voz = () => {
     if (!('speechSynthesis' in window)) {
@@ -510,6 +432,7 @@ function App() {
     enunciado.onend = () => definirAudioAtivo(false);
     window.speechSynthesis.speak(enunciado);
     definirAudioAtivo(true);
+    avisarLoko('lendo', 'Vou acompanhar a leitura em voz alta.');
   };
   useEffect(() => {
     return () => {
@@ -537,6 +460,7 @@ function App() {
   );
   return (
     <div className={'aplicacao paleta-' + paleta}>
+      {pagina !== 'inicio' && <Loko modo="flutuante" pagina={pagina} progresso={porcentagem} />}
       <header className="cabecalho">
         <button
           className="marca"
@@ -653,7 +577,7 @@ function App() {
             <div className="orbita-mascote">
               <div className="anel-orbita anel-1" />
               <div className="anel-orbita anel-2" />
-              <Guia />
+              <Loko modo="hero" />
               <span className="estrela-mascote">✶</span>
             </div>
             <div className="rodape-hero">
@@ -673,8 +597,7 @@ function App() {
             <div className="rotulo-secao">
               <span>01</span> UMA EXPERIÊNCIA DIFERENTE
             </div>
-            <div className="apresentacao-grid">
-              <div>
+            <div className="apresentacao-grid">              <div>
                 <h2>
                   Aprender é <em>se conectar.</em>
                 </h2>
@@ -697,7 +620,8 @@ function App() {
                 <span className="nodo nodo-d">memória</span>
                 <span className="nodo nodo-central">✳</span>
                 <div className="fio fio-a" />
-                <div className="fio fio-b" />                <div className="fio fio-c" />
+                <div className="fio fio-b" />
+                <div className="fio fio-c" />
               </div>
             </div>
             <div className="tres-diferenciais">
@@ -796,8 +720,7 @@ function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className="noticia-padrao">
-                    <span>{noticia.sinal}</span>
+                  <span className="noticia-padrao">                    <span>{noticia.sinal}</span>
                     <span className="linhas-noticia" />
                   </span>
                   <div className="noticia-corpo">
@@ -825,17 +748,17 @@ function App() {
             <div className="companheiro-grid">
               <div className="companheiro-visual">
                 <div className="halo-companheiro" />
-                <Guia />
+                <Loko modo="secao" />
               </div>
               <div>
-                <div className="marcador-pequeno">CONHEÇA O NILO ✳</div>
+                <div className="marcador-pequeno">CONHEÇA O LOKO ✳</div>
                 <h2>
                   Seu pequeno
                   <br />
                   <em>companheiro de ideias.</em>
                 </h2>
                 <p>
-                  O Nilo mora por aqui. Ele acompanha suas descobertas, reage
+                  O Loko mora por aqui. Ele acompanha suas descobertas, reage
                   quando você interage com ele e lembra que estudar também pode
                   ser leve.
                 </p>
@@ -1196,8 +1119,7 @@ function App() {
                   </div>
                 </div>
                 <div className="bloco-livro">
-                  <div>
-                    <BookOpen size={25} />
+                  <div>                    <BookOpen size={25} />
                     <div>
                       <strong>Continue no livro original</strong>
                       <p>
@@ -1274,15 +1196,20 @@ function App() {
                               : 'errada'
                             : respostas[indiceQuestao] !== undefined &&
                                 indice === questoes[indiceQuestao].correta
-                              ? 'certa'
-                              : ''
+                              ? 'certa'                              : ''
                         }
-                        onClick={() =>
+                        onClick={() => {
                           definirRespostas({
                             ...respostas,
                             [indiceQuestao]: indice,
-                          })
-                        }
+                          });
+                          const acertou = indice === questoes[indiceQuestao].correta;
+                          avisarLoko(
+                            acertou ? 'comemorando' : 'pensando',
+                            acertou ? 'Isso! Você acertou! Mandou muito bem!' : 'Quase! Errar também faz parte do aprendizado.',
+                            acertou
+                          );
+                        }}
                       >
                         <span>{String.fromCharCode(65 + indice)}</span>
                         {opcao}
@@ -1360,7 +1287,10 @@ function App() {
                 </div>
                 <button
                   className={'flashcard ' + (verso ? 'virado' : '')}
-                  onClick={() => definirVerso(!verso)}
+                  onClick={() => {
+                    definirVerso(!verso);
+                    avisarLoko(verso ? 'curioso' : 'pensando', verso ? 'Vamos lembrar de novo?' : 'Olha só! Que conceito interessante.');
+                  }}
                 >
                   <div className="marca-flashcard">
                     MENTEVERSO <span>✳</span>
@@ -1396,7 +1326,8 @@ function App() {
                       definirIndiceCartao((indiceCartao + 1) % cartoes.length);
                       definirVerso(false);
                     }}
-                  >                    Próximo <ChevronRight size={19} />
+                  >
+                    Próximo <ChevronRight size={19} />
                   </button>
                 </div>
               </div>
