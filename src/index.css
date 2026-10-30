@@ -2011,3 +2011,8 @@ p {
     transition: none !important;
   }
 }
+
+.convite-programacao{display:flex;align-items:center;gap:24px;padding:28px 32px;margin:22px 0 32px;border:1px solid var(--borda);border-radius:24px;background:radial-gradient(circle at 92% 0%,#8d634b2a,transparent 35%),linear-gradient(115deg,var(--painel),var(--painel2));}
+.convite-programacao-simbolo{display:grid;place-items:center;flex:none;width:82px;height:82px;border-radius:24px;background:#ca866622;color:#e2a887;font-family:monospace;font-size:31px;transform:rotate(-8deg);animation:programar-flutuar 5s ease-in-out infinite}
+.convite-programacao small{font-size:11px;letter-spacing:2px;color:var(--claro)}.convite-programacao h2{margin:5px 0;font-size:clamp(21px,2.3vw,33px);font-family:'Instrument Serif',serif;font-weight:400}.convite-programacao p{margin:0;line-height:1.65;color:var(--sutil);font-size:14px}.convite-programacao .botao-primario{flex:none;white-space:nowrap}
+@keyframes programar-flutuar{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(2deg) translateY(-7px)}}@media(max-width:800px){.convite-programacao{flex-direction:column;align-items:flex-start}.convite-programacao .botao-primario{width:100%;justify-content:center}}

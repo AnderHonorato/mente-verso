@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Loko, { avisarLoko } from './Loko';
+import Programacao from './Programacao';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -372,7 +373,7 @@ function App() {
   const navegar = (destino: string) => {
     definirPagina(destino);
     definirMenuAberto(false);
-    const estados: Record<string, string> = { painel:'Vamos ver seu progresso!', trilhas:'Uma trilha nova para explorar!', quiz:'Vamos pensar juntos?', cartoes:'Hora de exercitar a memória!', conexoes:'Olha quantas ideias conectadas!' };
+    const estados: Record<string, string> = { painel:'Vamos ver seu progresso!', trilhas:'Uma trilha nova para explorar!', quiz:'Vamos pensar juntos?', cartoes:'Hora de exercitar a memória!', programacao:'Vamos transformar ideias em código!', conexoes:'Olha quantas ideias conectadas!' };
     if (destino in estados) avisarLoko('curioso', estados[destino]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -511,6 +512,7 @@ function App() {
           >
             Memorização
           </button>
+          <button onClick={() => perfil ? navegar('programacao') : estudar()}>Programação</button>
         </nav>
         <div className="acoes-topo">
           <button
@@ -868,6 +870,9 @@ function App() {
               >
                 <Library size={18} /> Minhas trilhas
               </button>
+              <button className={pagina === 'programacao' ? 'ativo' : ''} onClick={() => navegar('programacao')}>
+                <BookOpen size={18} /> Programação
+              </button>
               <button
                 className={pagina === 'quiz' ? 'ativo' : ''}
                 onClick={() => navegar('quiz')}
@@ -900,6 +905,7 @@ function App() {
             <div className="atalhos-mobile">
               <button onClick={() => navegar('painel')}>Painel</button>
               <button onClick={() => navegar('trilhas')}>Trilhas</button>
+              <button onClick={() => navegar('programacao')}>Programação</button>
               <button onClick={() => navegar('quiz')}>Desafios</button>
               <button onClick={() => navegar('cartoes')}>Cartões</button>
             </div>
@@ -915,6 +921,11 @@ function App() {
                   Seu caminho não precisa ser linear. Escolha por onde começar e
                   aprenda uma descoberta de cada vez.
                 </p>
+                <div className="convite-programacao">
+                  <span className="convite-programacao-simbolo" aria-hidden="true">{'{ }'}</span>
+                  <div><small>CURSO · NOVO UNIVERSO</small><h2>Programação guiada</h2><p>10 trilhas com HTML, CSS, JavaScript, Python, APIs e projetos. Aprenda com exercícios, exemplos e um laboratório real.</p></div>
+                  <button className="botao-primario" onClick={() => navegar('programacao')}>Explorar curso <ArrowRight size={17}/></button>
+                </div>
                 <div className="indicadores">
                   <div>
                     <span>CONCLUÍDOS</span>
@@ -981,6 +992,7 @@ function App() {
                 </div>
               </div>
             )}
+            {pagina === 'programacao' && <Programacao perfil={perfil} />}
             {pagina === 'trilhas' && (
               <div className="conteudo-interno">
                 <div className="etiqueta">SUA BIBLIOTECA</div>
