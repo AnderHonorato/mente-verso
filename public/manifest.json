@@ -1,15 +1,15 @@
 {
   "name": "MenteVerso",
   "short_name": "MenteVerso",
-  "description": "Estudos interativos de psicanálise",
-  "start_url": "/",
-  "scope": "/",
+  "description": "Plataforma de estudos de psicanálise e programação",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#121110",
   "theme_color": "#121110",
   "icons": [
     {
-      "src": "/icone.svg",
+      "src": "./icone.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
